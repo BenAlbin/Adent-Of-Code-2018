@@ -1,9 +1,11 @@
 defmodule AdventOfCode2018.Day01 do
+  @spec part1([String.t()]) :: number()
   def part1(args) do
     args
     |> Enum.reduce(0, fn val, acc -> acc + String.to_integer(val) end)
   end
 
+  @spec part2([String.t()]) :: number()
   def part2(args) do
     seen = MapSet.new([0])
 
@@ -12,7 +14,7 @@ defmodule AdventOfCode2018.Day01 do
     |> Enum.reduce_while({0, seen}, &part2_reduce_fn(&1, &2))
   end
 
-  def part2_reduce_fn(value, {frequency, seen} = _accumulator) do
+  defp part2_reduce_fn(value, {frequency, seen} = _accumulator) do
     new_frequency = frequency + String.to_integer(value)
 
     unless MapSet.member?(seen, new_frequency) do
