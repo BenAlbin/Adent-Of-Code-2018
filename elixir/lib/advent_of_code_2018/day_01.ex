@@ -2,7 +2,7 @@ defmodule AdventOfCode2018.Day01 do
   @spec part1([String.t()]) :: number()
   def part1(args) do
     args
-    |> Enum.reduce(0, fn val, acc -> acc + String.to_integer(val) end)
+    |> Enum.reduce(0, &+/2)
   end
 
   @spec part2([String.t()]) :: number()
@@ -11,11 +11,11 @@ defmodule AdventOfCode2018.Day01 do
 
     args
     |> Stream.cycle()
-    |> Enum.reduce_while({0, seen}, &part2_reduce_fn(&1, &2))
+    |> Enum.reduce_while({0, seen}, &part2_reduce_fn/2)
   end
 
   defp part2_reduce_fn(value, {frequency, seen} = _accumulator) do
-    new_frequency = frequency + String.to_integer(value)
+    new_frequency = frequency + value
 
     unless MapSet.member?(seen, new_frequency) do
       {:cont, {new_frequency, MapSet.put(seen, new_frequency)}}

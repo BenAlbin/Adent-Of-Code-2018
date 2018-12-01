@@ -8,6 +8,7 @@ defmodule Mix.Tasks.D01.P1 do
     input =
       File.read!("./lib/resources/day_01.txt")
       |> String.split(~r/\R/)
+      |> Enum.map(&String.to_integer/1)
 
     input
     |> part1()
