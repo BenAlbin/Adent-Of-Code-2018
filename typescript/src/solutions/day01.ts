@@ -13,7 +13,7 @@ function part2(args: ReadonlyArray<String>): number {
   let seen = new Set([0]);
   let freq: number = 0;
   while (true) {
-    for (let i: number = 0; i < args.length - 1; i++) {
+    for (let i: number = 0; i < args.length; i++) {
       freq += +args[i];
       if (seen.has(freq)) {
         return freq;
