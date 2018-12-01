@@ -7,7 +7,7 @@ defmodule Mix.Tasks.D01.P2 do
   def run(_) do
     input =
       File.read!("./lib/resources/day_01.txt")
-      |> String.split("\r\n")
+      |> String.split(~r/\R/)
 
     input
     |> part2()
