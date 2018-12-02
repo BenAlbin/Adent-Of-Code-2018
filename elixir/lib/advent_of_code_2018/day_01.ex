@@ -1,15 +1,19 @@
 defmodule AdventOfCode2018.Day01 do
-  @spec part1([number()]) :: number()
-  def part1(args) do
-    args
+  @spec part1(String.t()) :: number()
+  def part1(input) do
+    input
+    |> String.split("\n", trim: true)
+    |> Enum.map(&String.to_integer/1)
     |> Enum.reduce(0, &+/2)
   end
 
-  @spec part2([number()]) :: number()
-  def part2(args) do
+  @spec part2(String.t()) :: number()
+  def part2(input) do
     seen = MapSet.new([0])
 
-    args
+    input
+    |> String.split("\n", trim: true)
+    |> Stream.map(&String.to_integer/1)
     |> Stream.cycle()
     |> Enum.reduce_while({0, seen}, &part2_reduce_fn/2)
   end

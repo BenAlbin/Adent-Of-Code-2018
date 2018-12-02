@@ -1,7 +1,8 @@
 defmodule AdventOfCode2018.Day02 do
-  @spec part1([String.t()]) :: number
-  def part1(args) do
-    args
+  @spec part1(String.t()) :: number
+  def part1(input) do
+    input
+    |> String.split("\n", trim: true)
     |> Enum.reduce(%{two: 0, three: 0}, &add_to_count/2)
     |> (fn %{two: two_count, three: three_count} -> two_count * three_count end).()
   end
@@ -18,9 +19,11 @@ defmodule AdventOfCode2018.Day02 do
   defp oneify(x) when x > 0, do: 1
   defp oneify(_), do: 0
 
-  @spec part2([String.t()]) :: String.t()
-  def part2(args) do
-    check_rest(args)
+  @spec part2(String.t()) :: String.t()
+  def part2(input) do
+    input
+    |> String.split("\n", trim: true)
+    |> check_rest()
   end
 
   defp check_rest([current_line | rest]) do

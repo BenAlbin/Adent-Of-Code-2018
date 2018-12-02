@@ -5,9 +5,7 @@ defmodule Mix.Tasks.D01.P2 do
 
   @shortdoc "Day 01 Part 2"
   def run(_) do
-    input =
-      File.read!("./lib/resources/day_01.txt")
-      |> String.split(~r/\R/)
+    input = File.read!("./lib/resources/day_01.txt")
 
     input
     |> part2()

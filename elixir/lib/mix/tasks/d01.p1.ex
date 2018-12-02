@@ -5,10 +5,7 @@ defmodule Mix.Tasks.D01.P1 do
 
   @shortdoc "Day 01 Part 1"
   def run(_) do
-    input =
-      File.read!("./lib/resources/day_01.txt")
-      |> String.split(~r/\R/)
-      |> Enum.map(&String.to_integer/1)
+    input = File.read!("./lib/resources/day_01.txt")
 
     input
     |> part1()
