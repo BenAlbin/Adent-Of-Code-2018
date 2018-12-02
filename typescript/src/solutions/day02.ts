@@ -42,4 +42,21 @@ function to_unique<T>(array: ReadonlyArray<T>): Array<T> {
   );
 }
 
-console.log(part1(args));
+function part2(args: ReadonlyArray<String>): string {
+  const id_length: number = args[0].length;
+  const args_length: number = args.length;
+  for (let i: number = 0; i < id_length; i++) {
+    let seen = new Set<string>();
+    for (let n: number = 0; n < args_length; n++) {
+      let removeOneString = args[n].substring(0, i) + args[n].substring(i + 1);
+      if (seen.has(removeOneString)) {
+        return removeOneString;
+      }
+      seen.add(removeOneString);
+    }
+  }
+  return "";
+}
+
+console.log("Part 1 Results: " + part1(args));
+console.log("Part 2 Results: " + part2(args));
