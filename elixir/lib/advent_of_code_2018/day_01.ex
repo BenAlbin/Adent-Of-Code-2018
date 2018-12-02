@@ -1,11 +1,11 @@
 defmodule AdventOfCode2018.Day01 do
-  @spec part1([String.t()]) :: number()
+  @spec part1([number()]) :: number()
   def part1(args) do
     args
     |> Enum.reduce(0, &+/2)
   end
 
-  @spec part2([String.t()]) :: number()
+  @spec part2([number()]) :: number()
   def part2(args) do
     seen = MapSet.new([0])
 

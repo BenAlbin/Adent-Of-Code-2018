@@ -3,19 +3,35 @@ defmodule AdventOfCode2018.Day02Test do
 
   import AdventOfCode2018.Day02
 
-  @tag :skip
-  test "part1" do
-    input = nil 
-    result = part1(input)
+  describe("Day 2 - Part 1") do
+    test "with provided input results in 12" do
+      input = [
+        "abcdef",
+        "bababc",
+        "abbcde",
+        "abcccd",
+        "aabcdd",
+        "abcdee",
+        "ababab"
+      ]
 
-    assert result
+      assert part1(input) === 12
+    end
   end
 
-  @tag :skip
-  test "part2" do
-    input = nil 
-    result = part2(input)
+  describe("Day 2 - Part 2") do
+    test "with provided input results in fgij" do
+      input = [
+        "abcde",
+        "fghij",
+        "klmno",
+        "pqrst",
+        "fguij",
+        "axcye",
+        "wvxyz"
+      ]
 
-    assert result
+      assert part2(input) === "fgij"
+    end
   end
 end
