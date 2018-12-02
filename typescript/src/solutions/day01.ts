@@ -3,7 +3,7 @@ import { readFileSync } from "fs";
 const args: ReadonlyArray<String> = readFileSync(
   "./src/resources/day01.txt",
   "utf8"
-).split(/\r?\n/);
+).split("\n");
 
 function part1(args: ReadonlyArray<String>): number {
   return args.reduce((acc, val) => acc + +val, 0);
