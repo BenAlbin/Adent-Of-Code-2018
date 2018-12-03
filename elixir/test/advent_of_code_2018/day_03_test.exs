@@ -3,19 +3,23 @@ defmodule AdventOfCode2018.Day03Test do
 
   import AdventOfCode2018.Day03
 
-  @tag :skip
   test "part1" do
-    input = nil 
-    result = part1(input)
+    input = """
+    #1 @ 1,3: 4x4
+    #2 @ 3,1: 4x4
+    #3 @ 5,5: 2x2
+    """
 
-    assert result
+    assert part1(input) === 4
   end
 
-  @tag :skip
   test "part2" do
-    input = nil 
-    result = part2(input)
+    input = """
+    #1 @ 1,3: 4x4
+    #2 @ 3,1: 4x4
+    #3 @ 5,5: 2x2
+    """
 
-    assert result
+    assert part2(input) === 3
   end
 end

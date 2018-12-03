@@ -9,10 +9,10 @@ defmodule AdventOfCode2018.Day02 do
 
   defp add_to_count(line, %{two: two_count, three: three_count} = _count) do
     line_list = String.graphemes(line)
-    twos_and_threes_list = line_list -- Enum.uniq(line_list)
-    threes_list = twos_and_threes_list -- Enum.uniq(twos_and_threes_list)
-    threes_raw = length(threes_list)
-    twos_raw = length(Enum.uniq(twos_and_threes_list)) - threes_raw
+    twos_and_threes = line_list -- Enum.uniq(line_list)
+    threes_only = twos_and_threes -- Enum.uniq(twos_and_threes)
+    threes_raw = length(threes_only)
+    twos_raw = length(Enum.uniq(twos_and_threes)) - threes_raw
     %{two: oneify(twos_raw) + two_count, three: oneify(threes_raw) + three_count}
   end
 
