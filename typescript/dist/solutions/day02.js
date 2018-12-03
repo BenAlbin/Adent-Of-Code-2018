@@ -1,7 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = require("fs");
-var args = fs_1.readFileSync("./src/resources/day02.txt", "utf8").split("\n");
 function part1(args) {
     var counts = args.reduce(function (acc, val) {
         var _a = count_for_line(val), two_for_line = _a.two, three_for_line = _a.three;

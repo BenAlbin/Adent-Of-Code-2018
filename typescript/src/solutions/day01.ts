@@ -1,8 +1,8 @@
-export function part1(args: ReadonlyArray<String>): number {
+export function part1(args: ReadonlyArray<string>): number {
   return args.reduce((acc, val) => acc + +val, 0);
 }
 
-export function part2(args: ReadonlyArray<String>): number {
+export function part2(args: ReadonlyArray<string>): number {
   let seen = new Set([0]);
   let freq: number = 0;
   while (true) {

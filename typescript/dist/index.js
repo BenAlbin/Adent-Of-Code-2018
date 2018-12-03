@@ -5,3 +5,7 @@ var day01_1 = require("./solutions/day01");
 var day1args = fs_1.readFileSync("./src/resources/day01.txt", "utf8").split("\n");
 console.log("Day 1 Part 1 Results : " + day01_1.part1(day1args));
 console.log("Day 1 Part 2 Results : " + day01_1.part2(day1args));
+var day02_1 = require("./solutions/day02");
+var day2args = fs_1.readFileSync("./src/resources/day02.txt", "utf8").split("\n");
+console.log("Day 2 Part 1 Results : " + day02_1.part1(day2args));
+console.log("Day 2 Part 2 Results : " + day02_1.part2(day2args));
