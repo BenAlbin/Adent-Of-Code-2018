@@ -58,5 +58,4 @@ function part2(args: ReadonlyArray<String>): string {
   return "";
 }
 
-console.log("Part 1 Results: " + part1(args));
-console.log("Part 2 Results: " + part2(args));
+export { part1, part2 };

@@ -1,0 +1,22 @@
+{
+  "name": "advent_of_code_2018",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@types/node": "^10.12.11"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.1"
+  },
+  "scripts": {
+    "test": "mocha -r ts-node/register ./test/*.spec.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
