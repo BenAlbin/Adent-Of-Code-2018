@@ -1,4 +1,6 @@
 defmodule AdventOfCode2018.Day04 do
+  import AdventOfCode2018.Utils.{EnumHelpers, ParseHelpers}
+
   def part1(input) do
     {id, minute, _} =
       input
@@ -14,19 +16,12 @@ defmodule AdventOfCode2018.Day04 do
   end
 
   defp find_most_asleep_minute({id, %{asleep: list_of_ranges}}) do
-    {minute, list} =
+    {minute, count} =
       list_of_ranges
       |> Enum.flat_map(& &1)
-      |> Enum.group_by(& &1)
-      |> Enum.max_by(fn {_k, v} -> length(v) end, fn -> {0, []} end)
+      |> most_common()
 
-    {id, minute, length(list)}
-  end
-
-  defp sum_ranges(list_of_ranges) do
-    list_of_ranges
-    |> Enum.map(&Enum.sum/1)
-    |> Enum.sum()
+    {id, minute, count}
   end
 
   def parse_record_regex(string) do
@@ -52,10 +47,6 @@ defmodule AdventOfCode2018.Day04 do
       action: parse_action(action)
     }
   end
-
-  defp intify(x) when is_binary(x), do: String.to_integer(x)
-  defp intify(x) when is_integer(x), do: x
-  defp intify(_), do: raise("WTF")
 
   defp parse_action("Guard #" <> string) do
     [id] = Regex.run(~r/\d+/, string)
