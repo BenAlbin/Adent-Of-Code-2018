@@ -134,6 +134,7 @@ defmodule AdventOfCode2018.Day03 do
     iex> parse_claim("#1 @ 1,3: 4x4")
     %AdventOfCode2018.Day03.Claim{id: 1, x_pos: 1, y_pos: 3, width: 4, height: 4}
   """
+  @deprecated "Use parse_claim_named_capture/1 instead"
   @spec parse_claim(String.t()) :: Claim.t()
   def parse_claim(claim_string) do
     claim_string
