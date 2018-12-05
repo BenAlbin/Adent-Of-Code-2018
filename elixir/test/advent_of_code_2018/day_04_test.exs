@@ -13,16 +13,6 @@ defmodule AdventOfCode2018.Day04Test do
              }
   end
 
-  test "parse_record_nimble_parsec" do
-    assert parse_record_nimble("[1518-11-01 00:25] wakes up") ==
-             %{
-               date: ~D[1518-11-01],
-               hour: 0,
-               minute: 25,
-               action: :wake_up
-             }
-  end
-
   test "par1" do
     input = """
     [1518-11-01 00:00] Guard #10 begins shift
