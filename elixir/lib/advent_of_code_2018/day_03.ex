@@ -1,5 +1,6 @@
 defmodule AdventOfCode2018.Day03 do
   import AdventOfCode2018.Utils.{ParseHelpers, EnumHelpers}
+  alias AdventOfCode2018.Utils.Parsers
 
   @type coordinate :: {pos_integer(), pos_integer()}
 
@@ -15,7 +16,7 @@ defmodule AdventOfCode2018.Day03 do
   def part1(input) do
     input
     |> String.split("\n", trim: true)
-    |> Enum.map(&parse_claim_named_capture/1)
+    |> Enum.map(&parse_claim/1)
     |> Enum.reduce(%{}, &fill_map/2)
     |> Enum.count(fn {_k, v} -> v > 1 end)
   end
@@ -36,24 +37,11 @@ defmodule AdventOfCode2018.Day03 do
     |> Enum.reduce(accumulator, fn {_id, coords}, acc -> Map.update(acc, coords, 1, &(&1 + 1)) end)
   end
 
-  @deprecated "Use parse_claim_named_capture/1 instead"
-  @spec parse_claim(String.t()) :: claim()
-  def parse_claim(claim_string) do
-    claim_string
-    |> String.split(~r/[^0-9]/, trim: true)
-    |> Enum.map(&String.to_integer/1)
-    |> to_atom_keys(id: :int, x_pos: :int, y_pos: :int, width: :int, height: :int)
-  end
-
-  @spec parse_claim_named_capture(String.t()) :: claim()
-  def parse_claim_named_capture(claim) do
-    parsed =
-      Regex.named_captures(
-        ~r/#(?<id>\d+) @ (?<x_pos>\d+),(?<y_pos>\d+): (?<width>\d+)x(?<height>\d+)/,
-        claim
-      )
-
-    to_atom_keys(parsed, id: :int, x_pos: :int, y_pos: :int, width: :int, height: :int)
+  def parse_claim(claim) do
+    with {:ok, items, "", %{}, _, _} <- Parsers.claim(claim) do
+      Enum.zip([:id, :x_pos, :y_pos, :width, :height], items)
+      |> Enum.into(%{})
+    end
   end
 
   @spec part2(String.t()) :: integer()
@@ -61,7 +49,7 @@ defmodule AdventOfCode2018.Day03 do
     claims =
       input
       |> String.split("\n", trim: true)
-      |> Enum.map(&parse_claim_named_capture/1)
+      |> Enum.map(&parse_claim/1)
 
     all = fn :get, data, next -> Enum.map(data, next) end
     all_ids = get_in(claims, [all, :id])

@@ -35,6 +35,6 @@ defmodule AdventOfCode2018.Utils.EnumHelpers do
   def most_common(list) do
     list
     |> Enum.reduce(%{}, fn x, acc -> Map.update(acc, x, 1, &(&1 + 1)) end)
-    |> Enum.max_by(fn {_k, v} -> v end)
+    |> Enum.max_by(fn {_k, v} -> v end, fn -> {nil, 0} end)
   end
 end
