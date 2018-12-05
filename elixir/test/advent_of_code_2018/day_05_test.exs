@@ -14,4 +14,18 @@ defmodule AdventOfCode2018.Day05Test do
 
     assert part2(input) == 4
   end
+
+  alias AdventOfCode2018.Day05Alt, as: Alt
+
+  test "part1alt" do
+    input = "dabAcCaCBAcCcaDA"
+
+    assert Alt.part1(input) == 10
+  end
+
+  test "part2alt" do
+    input = "dabAcCaCBAcCcaDA"
+
+    assert Alt.part2(input) == 4
+  end
 end

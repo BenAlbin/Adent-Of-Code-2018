@@ -40,3 +40,43 @@ defmodule AdventOfCode2018.Day05 do
     end)
   end
 end
+
+defmodule AdventOfCode2018.Day05Alt do
+  def part1(input) do
+    input
+    |> String.trim()
+    |> to_charlist()
+    |> fully_react()
+  end
+
+  def fully_react(charlist) do
+    {length, _} =
+      Enum.reduce(charlist, {0, []}, fn
+        letter, {length, [last_seen | rest]} when abs(last_seen - letter) == 32 ->
+          {length - 1, rest}
+
+        letter, {length, stack} ->
+          {length + 1, [letter | stack]}
+      end)
+
+    length
+  end
+
+  def part2(input) do
+    input = String.trim(input)
+    charlist = to_charlist(input)
+    to_check = for l <- ?a..?z, do: l
+
+    # :infinity is not a real thing in Elixir, but with term ordering:
+    # number < atom. So this works and is clear.
+    Enum.reduce(to_check, :infinity, fn letter, acc ->
+      charlist
+      |> Enum.filter(fn
+        l when l == letter or abs(l - letter) == 32 -> false
+        _ -> true
+      end)
+      |> fully_react()
+      |> min(acc)
+    end)
+  end
+end

@@ -9,7 +9,7 @@ defmodule AdventOfCode2018.Day04 do
       |> Enum.map(&parse_record_pattern/1)
       |> Enum.reduce({%{}, [], []}, &stack_and_map/2)
       |> elem(0)
-      |> Enum.max_by(fn {_k, v} -> sum_ranges(v.asleep) end)
+      |> Enum.max_by(fn {_k, v} -> count_ranges(v.asleep) end)
       |> find_most_asleep_minute()
 
     id * minute

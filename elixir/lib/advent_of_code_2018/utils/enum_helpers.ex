@@ -14,6 +14,12 @@ defmodule AdventOfCode2018.Utils.EnumHelpers do
     |> Enum.sum()
   end
 
+  @spec count_ranges([Range.t()]) :: number()
+  def count_ranges(list) do
+    list
+    |> Enum.reduce(0, &(Enum.count(&1) + &2))
+  end
+
   @doc """
   Returns the most common (mode) item of a list along with the count of how often that
   item appears.
