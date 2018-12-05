@@ -24,10 +24,6 @@ defmodule AdventOfCode2018.Day04 do
     {id, minute, count}
   end
 
-  def parse_record_regex(string) do
-    string
-  end
-
   def parse_record_pattern(string) do
     <<
       "[",
