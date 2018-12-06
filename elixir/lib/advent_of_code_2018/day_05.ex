@@ -25,8 +25,6 @@ defmodule AdventOfCode2018.Day05 do
       |> String.trim()
       |> String.to_charlist()
 
-    # :infinity is not a real thing in Elixir, but with term ordering:
-    # number < atom. So this works and is clear.
     Enum.reduce(?a..?z, :infinity, fn letter, acc ->
       charlist
       |> Enum.filter(fn

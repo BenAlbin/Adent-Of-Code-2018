@@ -3,17 +3,8 @@ defmodule AdventOfCode2018.Day06 do
   Solutions for Advent of Code Day 6. Input size appears to be
   pretty small, so I'm probably going to go for a slow solution.
 
-  This solution isn't actually correct, but it works for the input and
-  returned the correct answer.
-
-  The correct solution is going to be a fairly lengthy one since we'd
-  need to create a graph for each point where the edges are bisectors of
-  that point with each other point. Then we check if that graph contains a cycle,
-  if it doesn't: it has infinite area and we don't find the area for it.
-
-  I usually like to refactor old solutions and maybe benchmark them against
-  other approaches. But since this solution is not correct, and I'm
-  not too interested in making it correct. I'll leave it as is.
+  Turns out there is a simpler way to find infinite area nodes. Maybe this is
+  still incorrect, but it's better at least.
   """
 
   alias AdventOfCode2018.Utils.Parsers
@@ -29,25 +20,29 @@ defmodule AdventOfCode2018.Day06 do
     max_y = Enum.max(Keyword.values(all_coords))
     min_y = Enum.min(Keyword.values(all_coords))
 
-    finite_area_coords =
-      Enum.filter(all_coords, fn
-        {x, y} ->
-          if closest({x + max_x, y}, all_coords) != {x, y} and
-               closest({x - max_x, y}, all_coords) != {x, y} and
-               closest({x, y + max_y}, all_coords) != {x, y} and
-               closest({x, y - max_y}, all_coords) != {x, y} do
-            true
-          else
-            false
-          end
+    y_border = for x <- min_x..max_x, do: [{x, min_y}, {x, max_y}]
+    x_border = for y <- min_y..max_y, do: [{min_x, y}, {max_x, y}]
+
+    border = List.flatten(x_border ++ y_border)
+
+    closest_to_border =
+      Enum.reduce(border, MapSet.new(), fn {x, y}, acc ->
+        case closest({x, y}, all_coords) do
+          nil -> acc
+          closest_coord -> MapSet.put(acc, closest_coord)
+        end
       end)
 
+    finite_area_coords =
+      Enum.filter(all_coords, fn coord -> !MapSet.member?(closest_to_border, coord) end)
+
     area_to_check =
-      for x <- (min_x - (max_x - min_x))..(max_x + (max_x - min_x)),
-          y <- (min_y - (max_y - min_y))..(max_y + (max_y - min_y)),
+      for x <- min_x..max_x,
+          y <- min_y..max_y,
           do: {x, y}
 
-    Enum.reduce(area_to_check, %{}, fn coord, acc ->
+    area_to_check
+    |> Enum.reduce(%{}, fn coord, acc ->
       closest_coord = closest(coord, all_coords)
 
       if closest_coord in finite_area_coords do
@@ -56,7 +51,7 @@ defmodule AdventOfCode2018.Day06 do
         acc
       end
     end)
-    |> Enum.max_by(fn {_k, v} -> v end)
+    |> Enum.max_by(fn {_k, v} -> v end, fn -> {nil, 0} end)
     |> elem(1)
   end
 
@@ -95,8 +90,8 @@ defmodule AdventOfCode2018.Day06 do
     min_y = Enum.min(Keyword.values(all_coords))
 
     area_to_check =
-      for x <- (min_x - (max_x - min_x))..(max_x + (max_x - min_x)),
-          y <- (min_y - (max_y - min_y))..(max_y + (max_y - min_y)),
+      for x <- min_x..max_x,
+          y <- min_y..max_y,
           do: {x, y}
 
     Enum.reduce(area_to_check, 0, fn coord, acc ->
