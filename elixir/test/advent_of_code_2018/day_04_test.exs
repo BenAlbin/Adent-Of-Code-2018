@@ -13,7 +13,7 @@ defmodule AdventOfCode2018.Day04Test do
              }
   end
 
-  test "par1" do
+  test "Day 4 Part 1" do
     input = """
     [1518-11-01 00:00] Guard #10 begins shift
     [1518-11-01 00:05] falls asleep
@@ -37,7 +37,7 @@ defmodule AdventOfCode2018.Day04Test do
     assert part1(input) == 240
   end
 
-  test "part2" do
+  test "Day 4 Part 2" do
     input = """
     [1518-11-01 00:00] Guard #10 begins shift
     [1518-11-01 00:05] falls asleep

@@ -36,13 +36,13 @@ defmodule AdventOfCode2018.Day02 do
     end
   end
 
-  defp equal_parts(myers_diff) do
+  def equal_parts(myers_diff) do
     myers_diff
     |> Keyword.get_values(:eq)
     |> List.to_string()
   end
 
-  defp correct?(myers_diff) do
+  def correct?(myers_diff) do
     myers_diff
     |> Keyword.get_values(:del)
     |> List.to_string()

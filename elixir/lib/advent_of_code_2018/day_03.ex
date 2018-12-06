@@ -39,7 +39,8 @@ defmodule AdventOfCode2018.Day03 do
 
   def parse_claim(claim) do
     with {:ok, items, "", %{}, _, _} <- Parsers.claim(claim) do
-      Enum.zip([:id, :x_pos, :y_pos, :width, :height], items)
+      [:id, :x_pos, :y_pos, :width, :height]
+      |> Enum.zip(items)
       |> Enum.into(%{})
     end
   end

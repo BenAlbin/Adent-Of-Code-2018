@@ -2,7 +2,7 @@ defmodule AdventOfCode2018.Day05 do
   def part1(input) do
     input
     |> String.trim()
-    |> to_charlist()
+    |> String.to_charlist()
     |> fully_react()
   end
 
@@ -23,7 +23,7 @@ defmodule AdventOfCode2018.Day05 do
     charlist =
       input
       |> String.trim()
-      |> to_charlist()
+      |> String.to_charlist()
 
     # :infinity is not a real thing in Elixir, but with term ordering:
     # number < atom. So this works and is clear.

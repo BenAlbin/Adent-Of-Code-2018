@@ -21,10 +21,10 @@ defmodule AdventOfCode2018.Day01 do
   defp part2_reduce_fn(value, {frequency, seen} = _accumulator) do
     new_frequency = frequency + value
 
-    unless MapSet.member?(seen, new_frequency) do
-      {:cont, {new_frequency, MapSet.put(seen, new_frequency)}}
-    else
+    if MapSet.member?(seen, new_frequency) do
       {:halt, new_frequency}
+    else
+      {:cont, {new_frequency, MapSet.put(seen, new_frequency)}}
     end
   end
 end

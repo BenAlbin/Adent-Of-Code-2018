@@ -24,7 +24,8 @@ defmodule AdventOfCode2018.Utils.ParseHelpers do
   end
 
   def to_atom_keys(items, keys_list) when is_list(items) do
-    Enum.zip(items, keys_list)
+    items
+    |> Enum.zip(keys_list)
     |> Enum.into(%{}, fn {item, {key, type}} -> {key, into_type(item, type)} end)
   end
 
