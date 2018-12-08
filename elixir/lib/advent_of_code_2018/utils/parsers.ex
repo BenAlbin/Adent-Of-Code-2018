@@ -13,7 +13,7 @@ defmodule AdventOfCode2018.Utils.Parsers do
     |> ignore(string("x"))
     |> integer(min: 1)
 
-  defparsec(:claim, claim)
+  defparsec :claim, claim
 
   # start_shift =
   #   ignore(string("Guard #"))
@@ -39,12 +39,10 @@ defmodule AdventOfCode2018.Utils.Parsers do
   #   |> integer(min: 1)
   #   |> ignore(string(" begins shift."))
 
-  defparsec(
-    :coord,
-    unwrap_and_tag(integer(min: 1), :x)
-    |> ignore(string(", "))
-    |> unwrap_and_tag(integer(min: 1), :y)
-  )
+  defparsec :coord,
+            unwrap_and_tag(integer(min: 1), :x)
+            |> ignore(string(", "))
+            |> unwrap_and_tag(integer(min: 1), :y)
 
   def day6_parse(line) do
     {:ok, [x: x, y: y], "", _, _, _} = coord(line)

@@ -1,5 +1,4 @@
 defmodule AdventOfCode2018.Day03 do
-  import AdventOfCode2018.Utils.{ParseHelpers, EnumHelpers}
   alias AdventOfCode2018.Utils.Parsers
 
   @type coordinate :: {pos_integer(), pos_integer()}

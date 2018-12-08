@@ -15,10 +15,8 @@ defmodule AdventOfCode2018.Day06 do
       |> String.split("\n", trim: true)
       |> Enum.map(&Parsers.day6_parse/1)
 
-    max_x = Enum.max(Keyword.keys(all_coords))
-    min_x = Enum.min(Keyword.keys(all_coords))
-    max_y = Enum.max(Keyword.values(all_coords))
-    min_y = Enum.min(Keyword.values(all_coords))
+    {min_x, max_x} = Enum.min_max(Keyword.keys(all_coords))
+    {min_y, max_y} = Enum.min_max(Keyword.values(all_coords))
 
     y_border = for x <- min_x..max_x, do: [{x, min_y}, {x, max_y}]
     x_border = for y <- min_y..max_y, do: [{min_x, y}, {max_x, y}]
@@ -78,7 +76,7 @@ defmodule AdventOfCode2018.Day06 do
     abs(x1 - x2) + abs(y1 - y2)
   end
 
-  def part2(input) do
+  def part2(input, max_dist \\ 10_000) do
     all_coords =
       input
       |> String.split("\n", trim: true)
@@ -97,7 +95,7 @@ defmodule AdventOfCode2018.Day06 do
     Enum.reduce(area_to_check, 0, fn coord, acc ->
       dist_to_all = distance_to_all_coords(coord, all_coords)
 
-      if dist_to_all < 10_000 do
+      if dist_to_all < max_dist do
         acc + 1
       else
         acc

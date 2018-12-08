@@ -16,7 +16,6 @@ defmodule AdventOfCode2018.Day06Test do
     assert part1(input) == 17
   end
 
-  @tag :skip
   test "part2" do
     input = """
     1, 1
@@ -27,6 +26,6 @@ defmodule AdventOfCode2018.Day06Test do
     8, 9
     """
 
-    assert part2(input) == 16
+    assert part2(input, 32) == 16
   end
 end

@@ -2,6 +2,7 @@ defmodule Mix.Tasks.Solve do
   use Mix.Task
 
   @shortdoc "Solve advent of code puzzles"
+
   def run([day, part]) do
     part_func =
       case part do
